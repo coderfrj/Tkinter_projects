@@ -1,1 +1,65 @@
+from tkinter import *
 
+def submit():
+    categories = ['name', 'age', 'job', 'degree']
+    username = name.get()
+    userage = age.get()
+    userjob = job.get()
+    userdegree = degree.get()
+    information = [username,userage,userjob,userdegree]
+    for i in range(4):
+        if information[i] == '':
+            print(f'Please enter your {categories[i]}')
+    else:
+        with open('userInformation.txt', 'w') as file:
+            for i in range(4):
+                file.write(f'{categories[i]}: {information[i]}\n')
+
+
+
+window = Tk()
+# frames
+frame = Frame(window, bg='#F10056', width=50000, height=50000, padx=10, pady=10, bd=10, relief=RAISED)
+frame.pack()
+
+name_frame = Frame(frame, bg='gray')
+name_frame.pack(fill=X)
+
+age_frame = Frame(frame, bg='gray')
+age_frame.pack(fill=X)
+
+job_frame = Frame(frame, bg='gray')
+job_frame.pack(fill=X)
+
+degree_frame = Frame(frame, bg='gray')
+degree_frame.pack(fill=X)
+# name
+name = Entry(name_frame, font=('Arial', 25))
+name.pack(side=LEFT)
+name_lable = Label(name_frame, text='Name', fg='black', font=('Arial', 25), bg='gray')
+name_lable.pack(side=RIGHT)
+
+# age
+age = Entry(age_frame, font=('Arial', 25))
+age.pack(side=LEFT)
+age_lable = Label(age_frame, text='Age', fg='black', font=('Arial', 25), bg='gray')
+age_lable.pack(side=RIGHT)
+
+# job
+job = Entry(job_frame, font=('Arial', 25))
+job.pack(side=LEFT)
+job_lable = Label(job_frame, text='Occupation', fg='black', font=('Arial', 25), bg='gray')
+job_lable.pack(side=RIGHT)
+
+# degree
+degree = Entry(degree_frame, font=('Arial', 25))
+degree.pack(side=LEFT)
+degree_lable = Label(degree_frame, text='Degree', fg='black', font=('Arial', 25), bg='gray')
+degree_lable.pack(side=RIGHT)
+
+
+submit_button = Button(frame, text='SUBMIT', font=('Arial', 25), fg='black', bg='yellow', command=submit, relief=SUNKEN, bd=5)
+submit_button.pack(fill=X)
+
+
+window.mainloop()
